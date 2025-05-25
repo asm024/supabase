@@ -1,0 +1,14 @@
+name: Ping Supabase Edge Function
+
+on:
+  schedule:
+    - cron: '0 3 * * *'  # Runs daily at 3:00 AM UTC
+  workflow_dispatch:
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Supabase Function
+        run: |
+          curl -s -o /dev/null -w "%{http_code}" https://price-calc.functions.supabase.co/keepalive
